@@ -35,6 +35,7 @@ const Home = () => {
               <Link to={`post/${post.id}`} > <h4>{post.title}</h4>
               </Link>
               <p>{post.description}</p>
+              <button>...More</button>
             </div>
             </div>
           ))
