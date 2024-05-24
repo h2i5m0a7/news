@@ -171,6 +171,55 @@
         box-shadow: 0 5px 15px 0 rgba($color: #000000, $alpha: 0.25);
         line-height: 2;
     }
+    //write
+    .write{
+        margin: 20px;
+        display: flex;
+        gap: 30px;
+        .content-2{
+            margin: 20px;
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            flex: 5;
+            input{
+                color: teal;
+                font-size: 20px;
+                border: 1px solid gray;
+            }
+            .space-write{
+                height: 100%;
+                width: 100%;
+                margin-top: 30px;
+            .editor{
+                height:60vh;
+                }
+            }
+        }
+            .menu{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap:40px;
+
+                .item-1{
+                    display: flex;
+                    flex-direction: column;
+                    gap:4px;
+                }
+                .item-2{
+                    display: flex;
+                    flex-direction: column;
+                    gap:1px;
+                    .cat{
+                        display: flex;
+                        gap:5px;
+                    }
+
+                }
+            }
+        
+    }
 }
 }
 }
