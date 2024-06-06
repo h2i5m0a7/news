@@ -1,44 +1,44 @@
-import React, { useState } from 'react';
-import axios from "axios";
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+// import axios from 'axios';
+
 
 const Login = () => {
-  const [data, setData] = useState({
-    username: "",
-    password: ""
-  });
-const navigate= useNavigate();
-  const [err, setErr] = useState(null);
 
-  const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const [data,setData] = useState({
+    username:"",
+    password:""
+  })
+  const navigate = useNavigate();
 
-    try {
-     await axios.post("login", data);
-     navigate("/")
-     
-    } catch (err) {
-      console.log(err);
-      setErr(err.response.data);
-    }
-  };
+  const handleChange= async e=>{
+ setData({...data,[e.target.name]:e.target.value})
+}
+const{Login}= useContext(AuthContext)
 
+const handleSubmit = async e=>{
+  e.preventDefault();
+  try{
+  await Login(data)
+  navigate("/")
+ }
+catch(err){
+  console.log(err);
+}
+}
   return (
-    <div className='auth'>
+    <div className="auth">
       <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder='Username' name='username' required onChange={handleChange} />
-        <input type="password" placeholder='Password' name="password" required onChange={handleChange} />
-        <button type="submit">Login</button>
-        <span>Not Yet Registered?</span> <Link to="/register" className="link">Register</Link>
-        {err && <p style={{ color: "red" }}>{err}</p>}
+      <form>
+        <input type="text" placeholder='Username' required name="username" value={data.username} onChange={handleChange}/>
+        <input type="text" placeholder='Password' required name="password" value={data.password} onChange={handleChange}/>
+        <button onClick={handleSubmit}>Submit</button>
+        <span>Don't you have an account ?</span><div><Link className="link" to="/register">Register</Link></div>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

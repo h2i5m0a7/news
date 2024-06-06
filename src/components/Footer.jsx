@@ -2,7 +2,9 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='footer'>ALL Rights Reserved !</div>
+    <div className="footer">
+      <p>All rights reserved to Himani</p>
+    </div>
   )
 }
 
