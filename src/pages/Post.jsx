@@ -1,29 +1,46 @@
-import {React ,useState,useEffect} from 'react'
+import {React ,useState,useEffect,useContext} from 'react'
 import Menu from '../components/Menu'
-import { useLocation} from 'react-router-dom'
+import { useLocation,Link,  useNavigate} from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext';
 import axios from 'axios'
 import moment from "moment"
+import icon2 from "../img/icon2.jpg"
+import edit from '../img/edit.jpeg'
+
 
 const Post = () => {
   const [posts,setPost]= useState({}) //single data is to be fetch 
   const location = useLocation();
+  const{currentUser}= useContext(AuthContext)
   const postId= location.pathname.split("/")[2];
   console.log(location)
+  const navigate =useNavigate();
   useEffect(()=>{ //map is used for only arrays!
     const fetchData= async ()=>{ 
       try {
-      
-      const res = await axios.get(`http://192.168.1.78:8800/app/posts/${postId}`)
+      const res = await axios.get(`http://localhost:8800/app/posts/${postId}`)
       setPost(res.data)
-
     }
     catch(err){
       console.log()
     }
-    
   } 
   fetchData();
 },[postId])
+
+const deletePost= async ()=>{ 
+  try {
+        await axios.delete(`http://localhost:8800/app/posts/${postId}`,{
+          withCredentials:true
+        })
+        navigate('/')
+}
+catch(err){
+  console.log(err)
+}
+} 
+    
+
   return (
     
       <div className="post">
@@ -38,12 +55,21 @@ const Post = () => {
               <span>{posts.username}</span>
               <p>Posted {moment (posts.date).fromNow()}</p>
             </div>
+            {currentUser?.username===posts.username && (
+            <div className="user">
+            <Link to="/write"> 
+            <img src={edit} alt="" /></Link>
+            <img src={icon2} alt="" onClick={deletePost}/>
+
+            </div>
+)}
           </div>
           <h1>{posts.title}</h1>
           <p>{posts.description}</p>
           </div>
           <div className="menu">
-            <Menu/>
+            <Menu 
+            cat={posts.cat}/>
           
           
           </div>

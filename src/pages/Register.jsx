@@ -20,7 +20,7 @@ const Register = () => {
     const handleSubmit = async e=>{
       e.preventDefault();
       try{
-       await axios.post(" http://192.168.18.24:8800/app/register",data)
+       await axios.post(" http://localhost:8800/app/register",data)
        navigate("/login")
    
     }

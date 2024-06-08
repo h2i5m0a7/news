@@ -9,7 +9,7 @@ const Home = () => {
     const fetchData= async ()=>{
       try {
       
-      const res = await axios.get(`http://192.168.1.78:8800/app/post${cat}`)
+      const res = await axios.get(`http://localhost:8800/app/post${cat}`)
       setPost(res.data)
 
     }
