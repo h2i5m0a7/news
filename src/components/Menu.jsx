@@ -1,7 +1,7 @@
 import {React ,useState,useEffect} from 'react'
 import axios from "axios"
 
-const Menu = ({cat}) => {
+const Menu = ({cat,id}) => {
     // const post=[{
     //     id:"1",
     //     title:"helllo",
@@ -35,12 +35,15 @@ const [posts,setPost]= useState([]) //mutiple data is to be fetch
   } 
   fetchData();
 },[cat])
+const filterPost = posts.filter(filterData =>
+  filterData.id !== id
+)
 return (
     <div className="home-2">
       <div className="posts-2">
         <h3>Suggested posts</h3>
 {
-  posts.map((post)=>(
+  filterPost.map((post)=>(
     <div className="post-2" key={post.id}>
       <div className="img">
         <img src={post.img} alt="" />

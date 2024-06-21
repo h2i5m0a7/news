@@ -16,7 +16,7 @@ const Nav = () => {
         </div>
         <div className="links">
           <Link className="link" to="/?cat=politics">Politics</Link>
-          <Link className="link" to="/?cat=entertaiment">Entertainment</Link>
+          <Link className="link" to="/?cat=entertainment">Entertainment</Link>
           <Link className="link" to="/?cat=economics">Economics</Link>
           <Link className="link" to="/?cat=education">Education</Link>
           <Link className="link" to="/?cat=sports">Sports</Link>

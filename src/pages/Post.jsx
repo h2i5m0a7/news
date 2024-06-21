@@ -53,11 +53,11 @@ catch(err){
           <img src={posts.img} alt="" />
             <div className="info">
               <span>{posts.username}</span>
-              <p>Posted {moment (posts.date).fromNow()}</p>
+              <p>Posted {moment(posts.date).fromNow()}</p>
             </div>
             {currentUser?.username===posts.username && (
             <div className="user">
-            <Link to="/write"> 
+            <Link to="/write" state={posts}> 
             <img src={edit} alt="" /></Link>
             <img src={icon2} alt="" onClick={deletePost}/>
 
@@ -69,7 +69,8 @@ catch(err){
           </div>
           <div className="menu">
             <Menu 
-            cat={posts.cat}/>
+            cat={posts.cat} 
+            id={posts.id}/>
           
           
           </div>
